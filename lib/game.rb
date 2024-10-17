@@ -9,11 +9,10 @@ class Game
   def start
     file = load_word_file
     @secret_word = random_word(file)
-    pp @secret_word
     display = Display.new
     player = Player.new
     display.draw(player.incorrect_letters)
-    messages(player, display)
+    messages(player)
     gameloop(player, display)
   end
 
@@ -91,7 +90,7 @@ class Game
 
   def redraw(display, player)
     display.redraw(player.incorrect_letters)
-    messages(player, display)
+    messages(player)
   end
 
   def result(player)
