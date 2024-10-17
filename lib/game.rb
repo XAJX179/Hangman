@@ -33,7 +33,7 @@ class Game
   end
 
   def messages(player)
-    puts "incorrect letters = #{player.incorrect_letters.join(',')}\n\n"
+    puts "incorrect letters = #{player.incorrect_letters.join(',')}  #{player.incorrect_letters.length} of 6 \n\n"
     puts "correct letters = #{correct_letters(player).join(' ')}\n\n"
     puts 'guess one correct letter of word :'
     puts "prompt \n\n"
