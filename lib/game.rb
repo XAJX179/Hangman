@@ -70,6 +70,7 @@ class Game
       print "\033[1A"
       break if input.match(/[y,n]/)
     end
+    input
   end
 
   def save_and_exit
