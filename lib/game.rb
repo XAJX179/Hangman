@@ -22,11 +22,12 @@ class Game
   def load_saved_or_not
     puts 'Do you wanna load a save? (y/n)'
     input = confirm
-    if input == 'y'
+    if input == 'y' && !Dir.empty?('json')
       obj = Player.load_save
       @secret_word = obj['secret_word']
       Player.new(obj['guessed_letters'], obj['correct_letters'], obj['incorrect_letters'])
     else
+      puts 'No saved found.'
       Player.new
     end
   end
