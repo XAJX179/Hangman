@@ -86,11 +86,7 @@ class Game
   end
 
   def running(player)
-    if filter_correct(player).length == @secret_word.length
-      false
-    else
-      player.incorrect_letters.length < 6
-    end
+    filter_correct(player).length == @secret_word.length ? false : player.incorrect_letters.length < 6
   end
 
   # removing '_' from correct_letters(player)
