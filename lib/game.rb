@@ -14,6 +14,7 @@ class Game
     display.draw(player.incorrect_letters)
     messages(player)
     gameloop(player, display)
+    result(player)
   end
 
   private
@@ -62,7 +63,6 @@ class Game
       handle_guess(input, player)
       redraw(display, player)
     end
-    result(player)
   end
 
   def confirm
