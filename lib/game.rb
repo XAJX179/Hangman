@@ -59,7 +59,7 @@ class Game
 
   def gameloop(player, display)
     while running(player)
-      break if save_and_exit
+      break if save_and_exit(player)
 
       puts "\nprompt \n\n"
       while (input = player.user_input)
@@ -79,10 +79,10 @@ class Game
     input
   end
 
-  def save_and_exit
+  def save_and_exit(player)
     puts 'Do you wanna save and exit? (y/n)'
     input = confirm
-    input == 'y' ? save_game : false
+    input == 'y' ? player.save_game(@secret_word) : false
   end
 
   def running(player)

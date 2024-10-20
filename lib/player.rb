@@ -16,9 +16,32 @@ class Player
     gets.chomp[0].to_s.downcase
   end
 
+  def save_game(secret_word)
+    name = choose_name
+    file = File.open("json/#{name}.json", 'w')
+    file.rewind
+    data = JSON.dump({ 'guessed_letters' => @guessed_letters,
+                       'correct_letters' => @correct_letters,
+                       'incorrect_letters' => @incorrect_letters,
+                       'secret_word' => secret_word })
+    file.write(data)
+  end
+
+  def choose_name
+    while (input = gets.chomp.downcase)
+      break if valid_save?(input)
+    end
+    input
+  end
+
+  def valid_save?(input)
+    length = input.scan(/[a-z]/).length
+    length == input.length && input.length.positive?
+  end
+
   def self.load_save
     name = choose_save
-    file = File.open("json/#{name}")
+    file = File.open("json/#{name}.json")
     file.rewind
     data = file.read
     JSON.parse(data)
@@ -31,12 +54,14 @@ class Player
 
   def self.list_save
     print "Choose from save list :\n"
-    puts Dir.children('json')
+    Dir.children('json').each do |e|
+      puts File.basename(e, '.json')
+    end
   end
 
   def self.load_file_name
     while (input = gets.chomp.downcase)
-      break if file_exists?(input)
+      break if file_exists?("#{input}.json")
 
       print "\e[1A"
     end
