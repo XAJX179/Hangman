@@ -113,7 +113,7 @@ class Game
     if player.incorrect_letters.length == 6
       puts 'You couldn\'t save him hehe.          '
       puts "word was : #{@secret_word}"
-    else
+    elsif filter_correct(player).length == @secret_word.length
       puts 'You win , but i\'ll get him next time.'
     end
     puts "\n\n\n\n"
