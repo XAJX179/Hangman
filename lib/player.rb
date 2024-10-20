@@ -28,8 +28,11 @@ class Player
   end
 
   def choose_name
+    print 'Enter a name for save (alphabets only) : '
     while (input = gets.chomp.downcase)
       break if valid_save?(input)
+
+      print "\e[1AEnter a name for save (alphabets only) : "
     end
     input
   end
@@ -53,17 +56,18 @@ class Player
   end
 
   def self.list_save
-    print "Choose from save list :\n"
+    print "Save list :\n"
     Dir.children('json').each do |e|
       puts File.basename(e, '.json')
     end
   end
 
   def self.load_file_name
+    print 'Choose one from save list (alphabets only): '
     while (input = gets.chomp.downcase)
       break if file_exists?("#{input}.json")
 
-      print "\e[1A"
+      print "\e[1AChoose one from save list (alphabets only): "
     end
     input
   end
