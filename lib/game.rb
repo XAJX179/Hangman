@@ -10,7 +10,7 @@ class Game
     file = load_word_file
     @secret_word = random_word(file)
     display = Display.new
-    FileUtils.mkdir_p('json')
+    Dir.mkdir('json') unless Dir.exist?('json')
     player = load_saved_or_not
     display.draw(player.incorrect_letters)
     messages(player)
