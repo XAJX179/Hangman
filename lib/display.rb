@@ -32,7 +32,7 @@ class Display
   end
 
   def redraw(incorrect_letters)
-    print "\033[15A"
+    print "\033[13A"
     draw(incorrect_letters)
   end
 end

@@ -10,6 +10,7 @@ class Game
     file = load_word_file
     @secret_word = random_word(file)
     display = Display.new
+    FileUtils.mkdir_p('json')
     player = load_saved_or_not
     display.draw(player.incorrect_letters)
     messages(player)
@@ -27,7 +28,8 @@ class Game
       @secret_word = obj['secret_word']
       Player.new(obj['guessed_letters'], obj['correct_letters'], obj['incorrect_letters'])
     else
-      puts 'No saved found.'
+      puts 'No save found.' if Dir.empty?('json')
+      puts 'Starting new game...'
       Player.new
     end
   end
@@ -49,7 +51,6 @@ class Game
   def messages(player)
     puts "incorrect letters = #{player.incorrect_letters.join(',')}  #{player.incorrect_letters.length} of 6 \n\n"
     puts "correct letters = #{correct_letters(player).join(' ')}\n\n"
-    puts 'guess one correct letter of word :'
   end
 
   def correct_letters(player)
@@ -62,7 +63,7 @@ class Game
     while running(player)
       break if save_and_exit(player)
 
-      puts "\nprompt \n\n"
+      puts "\nguess one correct letter of word : \n"
       while (input = player.user_input)
         print "\033[1A"
         break if input_valid?(input, player)
