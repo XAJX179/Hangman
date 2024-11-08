@@ -10,7 +10,9 @@
 - Saving an ongoing game using json.
 - Loading a json save to play.
 - invalid input not accepted.
-# Video
-<video controls width="650">
-  <source src="./hangman_complete.mp4" type="video/mp4" />
-</video>
+# Peek
+<img src="./hangman_complete.png">
+<img src="./hangman_complete.gif">
+original video -
+
+[Click me!](https://discord.com/channels/505093832157691914/690591236922409012/1297622776894722139)
